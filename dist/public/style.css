@@ -1,0 +1,228 @@
+/* VARIABLES */
+:root {
+  --primary-color: #faf9f6;
+  --text-color: #000033;
+  --blue-color: #1570ef;
+  --grey-light: #91836c;
+}
+
+/* BASE STYLES */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-family: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--text-color);
+  font-size: 1.6rem;
+  background-color: var(--secondary-color);
+  padding: 2rem;
+}
+
+/* Animations */
+@keyframes colorFlash {
+  0% {
+    background-color: var(--blue-color);
+  }
+  50% {
+    background-color: var(--text-color);
+  }
+  100% {
+    background-color: var(--blue-color);
+  }
+}
+
+/* HEADER */
+header > h1 {
+  text-align: center;
+}
+
+header > h1 > a:link,
+a:visited,
+a:active,
+a:hover {
+  text-decoration: none;
+  font: inherit;
+  color: inherit;
+}
+
+header > nav {
+  padding: 0 3rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+header > nav > *:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.account {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.account > img {
+  width: 4rem;
+  height: 4rem;
+}
+
+.account__info {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  right: -45%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--text-color);
+  font-size: 1rem;
+  color: #fff;
+  padding: 5px;
+  border-radius: 4px;
+  transition: all 0.3s ease-out;
+}
+.account:hover .account__info {
+  opacity: 1;
+  visibility: visible;
+}
+
+header > nav ul {
+  display: flex;
+  list-style: none;
+  justify-content: flex-end;
+}
+
+header > nav ul > li {
+  margin-left: 2rem;
+}
+
+/* Main */
+main {
+  padding: 1rem;
+}
+main > div {
+  padding: 1.5rem;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form > input {
+  width: 50%;
+  display: inline-block;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  border-radius: 5px;
+  border: var(--grey-light) 1px solid;
+  font: inherit;
+  transition: all 0.3s ease-out;
+}
+.form > input::placeholder {
+  font-size: 1.5rem;
+}
+.form > input:focus {
+  outline: none;
+  border: var(--text-color) 1px solid;
+}
+/* .form > button {
+  width: 40%;
+} */
+
+.qrcode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.qrcode > img {
+  width: 20rem;
+  height: 20rem;
+}
+
+/* Sign up */
+section.signup,
+section.signin {
+  width: 60%;
+  margin: 1rem auto;
+}
+.form__sign {
+  display: flex;
+  flex-direction: column;
+}
+.form__sign > * {
+  margin-bottom: 1.5rem;
+}
+.form__sign > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__sign label {
+  margin-bottom: 0.5rem;
+}
+
+.form__sign input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: var(--grey-light) 1px solid;
+  font: inherit;
+  font-size: 1.4rem;
+  transition: all 0.3s ease-out;
+}
+.form__sign input::placeholder {
+  font-size: 1.5rem;
+}
+
+.form__sign input:focus {
+  outline: none;
+  border: var(--text-color) 1px solid;
+}
+
+.form__sign button {
+  margin-bottom: 0.5rem;
+  /* align-self: flex-end; */
+}
+
+/* Utilities */
+.btn {
+  background-color: var(--blue-color);
+  display: block;
+  padding: 0.35rem 0.65rem;
+  border-radius: 5px;
+  border: none;
+  font: inherit;
+  font-size: 1.45rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn:hover,
+.btn:focus {
+  animation: colorFlash 0.5s ease-in-out infinite;
+}
+
+a.link:link,
+a.link:visited {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: text-decoration 0.3s ease-out;
+}
+a.link:hover,
+a.link:active {
+  text-decoration: underline;
+}

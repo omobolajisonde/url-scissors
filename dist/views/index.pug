@@ -1,0 +1,14 @@
+extends base
+block content
+  main
+    div.scissors
+      form.form
+        input(type="text", placeholder="Enter that URL you want to shorten.", required)
+        button.btn(type="submit") Click to shorten URL
+    div.qr
+      form.form
+        input(type="text", placeholder="Enter that URL you want to generate a QR code for.", required)
+        button.btn(type="submit") Click to generate URL QR code.
+    div.qrcode
+      img(src="./QR.png", alt="QR code")
+      button.btn(type="submit") Download QR code
