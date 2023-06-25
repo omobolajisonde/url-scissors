@@ -330,6 +330,7 @@ section.history > ul > li:not(:last-child) {
 section.history > ul > li > p {
   display: flex;
   flex-direction: column;
+  flex-basis: 80%;
 }
 
 section.history > ul > li > p > span:first-child {
