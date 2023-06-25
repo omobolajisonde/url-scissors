@@ -11,4 +11,26 @@ block content
       form.form(id="qrForm") 
         input(name="Url",type="text", placeholder="Enter the URL for QR code generation", required)
         button.btn(type="submit") Click to generate QR code.
-    div.qrcode(id="qrcode") 
+    div.qrcode(id="qrcode")
+
+  script.
+    function copyToClipboard() {
+      const copyText = document.getElementById("copy-input");
+
+      navigator.clipboard
+        .writeText(copyText.value)
+        .then(() => {
+          alert("Text copied to clipboard!");
+        })
+        .catch((error) => {
+          console.error("Failed to copy text: ", error);
+        });
+    }
+
+    function downloadQRCode() {
+      const downloadLink = document.createElement("a");
+      const qrcodeImg = document.getElementById("qrcodeImg");
+      downloadLink.href = qrcodeImg.src;
+      downloadLink.download = "qrCode.png";
+      downloadLink.click();
+    }

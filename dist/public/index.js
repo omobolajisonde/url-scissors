@@ -7,27 +7,6 @@ const qrcode = document.getElementById("qrcode");
 const copyField = document.getElementById("copy-field");
 const logoutBtn = document.getElementById("logout");
 
-function copyToClipboard() {
-  const copyText = document.getElementById("copy-input");
-
-  navigator.clipboard
-    .writeText(copyText.value)
-    .then(() => {
-      alert("Text copied to clipboard!");
-    })
-    .catch((error) => {
-      console.error("Failed to copy text: ", error);
-    });
-}
-
-function downloadQRCode() {
-  const downloadLink = document.createElement("a");
-  const qrcodeImg = document.getElementById("qrcodeImg");
-  downloadLink.href = qrcodeImg.src;
-  downloadLink.download = "qrCode.png";
-  downloadLink.click();
-}
-
 logoutBtn?.addEventListener("click", function () {
   const confirmLogout = window.confirm("Are you sure you want to logout?");
   if (!confirmLogout) return;
@@ -50,7 +29,6 @@ shortnerForm.addEventListener("submit", async function (e) {
       Cookie: document.cookie,
     };
     const data = await AJAX("/api/v1/url/shortenURL", body, headers);
-    console.log(data);
 
     const resultHTML = `
       <input type="text" value=${data.data.url.shortUrl} id="copy-input" class="smash-effect" readonly>
