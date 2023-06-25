@@ -1,15 +1,28 @@
+import passport from "passport";
 import { Router } from "express";
 
-import {
-  shortenURL,
-  redirectToOriginalURL,
-} from "../controllers/scissorsController";
+import { shortenURL, generateQRCode } from "../controllers/scissorsController";
 
 const router = Router();
 
-router.get("/:urlAlias", redirectToOriginalURL);
-router.post("/shortenURL", shortenURL);
-// router.patch("/:id", updateTodo);
-// router.delete("/:id", deleteTodo);
+router.post(
+  "/shortenURL",
+  (req, res, next) => {
+    passport.authenticate(
+      "jwt",
+      { session: false },
+      (err: Error, user: object) => {
+        if (err || !user) {
+          shortenURL;
+        }
+        // Authentication successful, proceed with the route handler
+        req.user = user;
+        next();
+      }
+    )(req, res, next);
+  },
+  shortenURL
+);
+router.post("/qrcode", generateQRCode);
 
 export default router;

@@ -1,3 +1,6 @@
+import flashMessage from "./flashMessage.js";
+import { AJAX, setCookie } from "./helpers.js";
+
 const signupForm = document.getElementById("signup");
 
 signupForm.addEventListener("submit", async function (e) {
@@ -11,27 +14,16 @@ signupForm.addEventListener("submit", async function (e) {
       password: formData.get("password"),
       confirmPassword: formData.get("confirmPassword"),
     };
-    const response = await fetch("/api/v1/auth/signup", {
-      method: "POST",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    // Calculate the cookie expiration time
-    const expirationDate = new Date();
-    expirationDate.setTime(expirationDate.getTime() + 60 * 60 * 1000); // Convert 60 minutes to milliseconds
+    const data = await AJAX("/api/v1/auth/signup", body);
 
-    // Format the cookie string
-    const cookieString = `jwt=${encodeURIComponent(
-      data.token
-    )}; expires=${expirationDate.toUTCString()}; path=/;`;
-
-    // Set the cookie
-    document.cookie = cookieString;
+    setCookie(data.token);
 
     // Redirect to a home page
-    window.location.href = "/";
-  } catch (error) {}
+    flashMessage("Sign up successful! Redirecting to home page...", "#5cb85c");
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 3000);
+  } catch (error) {
+    flashMessage(error.message, "#ff0000");
+  }
 });

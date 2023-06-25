@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const http_1 = __importDefault(require("http"));
 const https_1 = __importDefault(require("https"));
+const appError_1 = __importDefault(require("./appError"));
 function validateUrl(url) {
     return new Promise((resolve, reject) => {
         const protocol = url.startsWith("https") ? https_1.default : http_1.default;
@@ -20,7 +21,7 @@ function validateUrl(url) {
             }
         });
         request.on("error", (error) => {
-            reject(error); // URL is invalid or an error occurred
+            reject(new appError_1.default("Your internet connection is very unstable.", 500)); // URL is invalid or an error occurred
         });
         request.end();
     });

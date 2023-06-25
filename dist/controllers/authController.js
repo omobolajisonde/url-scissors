@@ -64,9 +64,10 @@ exports.forgotPassword = (0, catchAsync_1.default)((req, res, next) => __awaiter
         return next(new appError_1.default("User does not exist!", 404));
     const resetToken = user.genResetToken();
     user.save({ validateBeforeSave: false }); // persists the changes made in  genResetToken function
-    const resetPasswordURL = `${req.protocol}://${req.get("host")}/api/v1/auth/resetPassword/${resetToken}`;
-    const body = `Forgot your password? Submit a PATCH request with your new password and confirmPassword to: <a href=${resetPasswordURL}>${resetPasswordURL}</a>.\nIf you didn't forget your password, please ignore this email!`;
-    const subject = "Your password reset token (valid for 10 min)";
+    const resetPasswordURL = `${req.protocol}://${req.get("host")}/resetpassword?resetToken=${resetToken}`;
+    const body = `
+  Dear ${user.firstName},\nWe received a request to reset your password for your account at URL Scissors.\nTo reset your password, please click on the following link:\n${resetPasswordURL}.\nIf you did not request a password reset, you can ignore this email. Rest assured that your account is safe.\nThank you,\nURL Scissors.`;
+    const subject = "Password Reset Token (valid for 10 min)";
     try {
         yield (0, emailSender_1.default)({ email, body, subject });
         return res.status(200).json({

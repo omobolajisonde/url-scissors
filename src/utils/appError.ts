@@ -1,10 +1,15 @@
 class AppError extends Error {
   status: string;
   isOperational: boolean;
-  constructor(public message: string, public statusCode: number) {
+  constructor(
+    public message: string,
+    public statusCode: number,
+    public render: Boolean = false
+  ) {
     super();
     this.message = message;
     this.statusCode = statusCode;
+    this.render = render;
     this.status = `${this.statusCode}`.startsWith("4")
       ? "Client Error!"
       : "Internal Server Error";

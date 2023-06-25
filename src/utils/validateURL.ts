@@ -1,5 +1,6 @@
 import http from "http";
 import https from "https";
+import AppError from "./appError";
 
 function validateUrl(url: string) {
   return new Promise((resolve, reject) => {
@@ -20,7 +21,7 @@ function validateUrl(url: string) {
     });
 
     request.on("error", (error) => {
-      reject(error); // URL is invalid or an error occurred
+      reject(new AppError("Your internet connection is very unstable.", 500)); // URL is invalid or an error occurred
     });
 
     request.end();

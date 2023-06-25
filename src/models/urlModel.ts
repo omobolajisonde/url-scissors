@@ -18,7 +18,9 @@ const urlSchema = new Schema(
       type: String,
       required: true,
       trim: true,
+      unique: true,
     },
+
     userId: {
       type: ObjectId,
       ref: "User",

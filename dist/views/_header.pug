@@ -11,12 +11,10 @@ header
             a.link(href="/signup") Sign up for free
         if isLoggedIn
           li
-            a.link(href="history") History
-        li
-          a.link(href="/rateus") Rate us
+            a.link(href="/history") History
       if isLoggedIn
         div.account
-          img(src="./avatar.png", alt="User account")
+          img(src="/avatar.png", alt="User account")
           div.account__info
             span.username #{user.firstName} #{user.lastName} 
             span.email #{user.email}

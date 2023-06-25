@@ -42,15 +42,83 @@ body {
   }
 }
 
+@keyframes smash {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  25% {
+    transform: scale(0.25);
+    opacity: 0.25;
+  }
+  50% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+  75% {
+    transform: scale(0.75);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.smash-effect {
+  animation: smash 0.3s ease-out;
+}
+
+.flash-message {
+  position: absolute;
+  padding: 5px;
+  padding-top: 1.5rem;
+  top: 1rem !important;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.flash-message > button {
+  position: absolute;
+  top: 0px;
+  right: 5px;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.copy-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.copy-field input {
+  width: 25rem;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 5px;
+  font-size: 1.3rem;
+  box-shadow: inset 0px 0px 5px 2px rgba(0, 0, 0, 0.1);
+}
+
+.copy-field input:focus {
+  outline: none;
+}
+
 /* HEADER */
 header > h1 {
   text-align: center;
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
 }
 
 header > h1 > a:link,
-a:visited,
-a:active,
-a:hover {
+header > h1 > a:visited,
+header > h1 > a:active,
+header > h1 > a:hover {
   text-decoration: none;
   font: inherit;
   color: inherit;
@@ -131,10 +199,12 @@ main > div {
   border-radius: 5px;
   border: var(--grey-light) 1px solid;
   font: inherit;
+  font-size: 1.3rem;
   transition: all 0.3s ease-out;
+  font-size: 1.25rem;
 }
 .form > input::placeholder {
-  font-size: 1.5rem;
+  font: inherit;
 }
 .form > input:focus {
   outline: none;
@@ -150,13 +220,18 @@ main > div {
   align-items: center;
 }
 .qrcode > img {
-  width: 20rem;
-  height: 20rem;
+  width: 15rem;
+  height: 15rem;
+  display: inline-block;
+  margin-bottom: 1rem;
 }
 
 /* Sign up */
 section.signup,
-section.signin {
+section.signin,
+section.history,
+section.urlAnalytics,
+section.error {
   width: 60%;
   margin: 1rem auto;
 }
@@ -181,11 +256,11 @@ section.signin {
   border-radius: 5px;
   border: var(--grey-light) 1px solid;
   font: inherit;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   transition: all 0.3s ease-out;
 }
 .form__sign input::placeholder {
-  font-size: 1.5rem;
+  font: inherit;
 }
 
 .form__sign input:focus {
@@ -209,20 +284,112 @@ section.signin {
   font-size: 1.45rem;
   color: #fff;
   cursor: pointer;
+  transition: all 0.3s ease-out;
 }
 
 .btn:hover,
 .btn:focus {
-  animation: colorFlash 0.5s ease-in-out infinite;
+  background-color: var(--text-color);
 }
 
 a.link:link,
 a.link:visited {
   color: var(--text-color);
-  text-decoration: none;
+  text-decoration: underline;
   transition: text-decoration 0.3s ease-out;
 }
 a.link:hover,
 a.link:active {
-  text-decoration: underline;
+  text-decoration: none;
+}
+
+/* History */
+section.history > h1 {
+  font-size: 2rem;
+}
+
+section.history > ul {
+  margin-top: 1rem;
+  padding: 1rem;
+  list-style: none;
+  font-size: 1.3rem;
+  box-shadow: inset 0px 0px 5px 2px rgba(0, 0, 0, 0.1);
+}
+
+section.history > ul > li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+section.history > ul > li:not(:last-child) {
+  border-bottom: 1px solid var(--text-color);
+}
+
+section.history > ul > li > p {
+  display: flex;
+  flex-direction: column;
+}
+
+section.history > ul > li > p > span:first-child {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+section.history > ul > li > p > span:last-child {
+  font-style: italic;
+}
+
+/* URL Analytics */
+
+section.urlAnalytics > h1 {
+  font-size: 1.2rem;
+}
+
+section.urlAnalytics > h3 {
+  margin-top: 1rem;
+  font-size: 1.6rem;
+}
+
+section.urlAnalytics > ul {
+  margin-top: 1rem;
+  padding: 1rem;
+  list-style: none;
+  font-size: 1.3rem;
+  box-shadow: inset 0px 0px 5px 2px rgba(0, 0, 0, 0.1);
+}
+
+section.urlAnalytics > ul > li {
+  display: flex;
+  padding: 0.5rem;
+}
+
+section.urlAnalytics > ul > li:not(:last-child) {
+  border-bottom: 1px solid var(--text-color);
+}
+
+.pagination {
+  margin-top: 2rem;
+}
+
+.pagination-btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background-color: var(--blue-color);
+  color: #fff !important;
+  text-decoration: none;
+  border-radius: 0.4rem;
+  margin-right: 1rem;
+}
+
+.pagination-btn:hover {
+  background-color: var(--text-color);
+}
+
+section.error > * {
+  font-size: 1.4rem;
+}
+
+section.error > p {
+  color: #ff0000;
 }

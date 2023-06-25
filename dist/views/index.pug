@@ -1,14 +1,14 @@
 extends base
 block content
   main
-    div.scissors
-      form.form
-        input(type="text", placeholder="Enter that URL you want to shorten.", required)
+    div.scissors(id="scissors")
+      form.form(id="shortnerForm") 
+        input(name="longUrl",type="text", placeholder="Enter the URL to shorten", required)
+        input(name="customAlias",type="text", placeholder="Customize the URL shortening (optional)", maxLength="6")
         button.btn(type="submit") Click to shorten URL
+      div.copy-field(id="copy-field")
     div.qr
-      form.form
-        input(type="text", placeholder="Enter that URL you want to generate a QR code for.", required)
-        button.btn(type="submit") Click to generate URL QR code.
-    div.qrcode
-      img(src="./QR.png", alt="QR code")
-      button.btn(type="submit") Download QR code
+      form.form(id="qrForm") 
+        input(name="Url",type="text", placeholder="Enter the URL for QR code generation", required)
+        button.btn(type="submit") Click to generate QR code.
+    div.qrcode(id="qrcode") 

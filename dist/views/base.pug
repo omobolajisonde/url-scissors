@@ -5,15 +5,22 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="preconnect", href="https://fonts.googleapis.com")
     link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
-    link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap", rel="stylesheet")
-    link(href="./style.css", rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Pacifico&display=swap", rel="stylesheet")
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css")
+    script(src="https://cdn.jsdelivr.net/npm/toastify-js")
+    link(href="/style.css", rel="stylesheet")
+    link(href="/responsiveness.css", rel="stylesheet")
+
     if script === "index"
-      script(src="./index.js" defer) 
+      script(type="module" src="/index.js" defer) 
     if script === "signup"
-      script(src="./signupScript.js" defer) 
+      script(type="module" src="/signupScript.js" defer) 
     if script === "signin"
-      script(src="./signinScript.js" defer) 
-    //- link(href="./responsiveness.css", rel="stylesheet")
+      script(type="module" src="/signinScript.js" defer) 
+    if script === "forgotPassword"
+      script(type="module" src="/forgotPassword.js" defer)
+    if script === "resetPassword"
+      script(type="module" src="/resetPassword.js" defer) 
     title URL Scissors
   body
     //- Header
