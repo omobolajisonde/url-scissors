@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.renderUrlAnalytics = exports.renderHistory = void 0;
 const urlModel_1 = __importDefault(require("../models/urlModel"));
 const catchAsync_1 = __importDefault(require("../utils/catchAsync"));
+const redis_1 = __importDefault(require("../config/redis"));
 exports.renderHistory = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     let { page } = req.query;
@@ -37,10 +38,18 @@ exports.renderHistory = (0, catchAsync_1.default)((req, res, next) => __awaiter(
 exports.renderUrlAnalytics = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _b;
     let { urlAlias } = req.params;
-    const url = yield urlModel_1.default.findOne({
-        userId: (_b = req.user) === null || _b === void 0 ? void 0 : _b._id,
-        urlAlias,
-    });
+    let url = yield redis_1.default.redis.get(`url:${urlAlias}`);
+    if (url) {
+        // Cache Hit
+        url = JSON.parse(url);
+    }
+    if (!url) {
+        // Cache Miss
+        url = yield urlModel_1.default.findOne({
+            userId: (_b = req.user) === null || _b === void 0 ? void 0 : _b._id,
+            urlAlias,
+        });
+    }
     return res.status(200).render("urlAnalytics", {
         isLoggedIn: true,
         user: req.user,

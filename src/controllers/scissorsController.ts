@@ -6,6 +6,7 @@ import validateUrl from "../utils/validateURL";
 import AppError from "../utils/appError";
 import Url from "../models/urlModel";
 import UserObject from "../interfaces/UserObject";
+import Cache from "../config/redis";
 
 export const shortenURL = catchAsync(async (req, res, next) => {
   // Get the longURL to shorten
@@ -47,6 +48,8 @@ export const shortenURL = catchAsync(async (req, res, next) => {
       shortUrl,
       urlAlias,
     });
+    // Cache Url info
+    await Cache.redis.set(`url:${url.urlAlias}`, JSON.stringify(url));
     return res.status(201).json({ status: "success", data: { url } });
   } else {
     throw new AppError(
@@ -72,6 +75,8 @@ export const redirectToOriginalURL = catchAsync(async (req, res, next) => {
     }
     // Save updates
     await url.save();
+    // Update Cache
+    await Cache.redis.set(`url:${url.urlAlias}`, JSON.stringify(url));
     // Redirect to the original URL
     return res.redirect(url.longUrl);
   } else {

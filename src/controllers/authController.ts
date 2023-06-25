@@ -18,6 +18,7 @@ export const signUpUser = catchAsync(async (req, res, next) => {
   });
   user.password = undefined; // so the password won't show in the output and as payload in the token
   user.__v = undefined;
+
   const token = genToken(user);
   return res.status(201).json({
     status: "success",

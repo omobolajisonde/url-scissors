@@ -1,6 +1,7 @@
 import Url from "../models/urlModel";
 import catchAsync from "../utils/catchAsync";
 import UserObject from "../interfaces/UserObject";
+import Cache from "../config/redis";
 
 export const renderHistory = catchAsync(async (req, res, next) => {
   let { page } = req.query as { page: string | number };
@@ -25,10 +26,21 @@ export const renderHistory = catchAsync(async (req, res, next) => {
 export const renderUrlAnalytics = catchAsync(async (req, res, next) => {
   let { urlAlias } = req.params as { urlAlias: string };
 
-  const url = await Url.findOne({
-    userId: (req.user as UserObject)?._id,
-    urlAlias,
-  });
+  let url = await Cache.redis.get(`url:${urlAlias}`);
+
+  if (url) {
+    // Cache Hit
+    url = JSON.parse(url);
+  }
+
+  if (!url) {
+    // Cache Miss
+    url = await Url.findOne({
+      userId: (req.user as UserObject)?._id,
+      urlAlias,
+    });
+  }
+
   return res.status(200).render("urlAnalytics", {
     isLoggedIn: true,
     user: req.user,

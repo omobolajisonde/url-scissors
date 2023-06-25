@@ -19,6 +19,7 @@ const catchAsync_1 = __importDefault(require("../utils/catchAsync"));
 const validateURL_1 = __importDefault(require("../utils/validateURL"));
 const appError_1 = __importDefault(require("../utils/appError"));
 const urlModel_1 = __importDefault(require("../models/urlModel"));
+const redis_1 = __importDefault(require("../config/redis"));
 exports.shortenURL = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b, _c, _d;
     // Get the longURL to shorten
@@ -52,6 +53,8 @@ exports.shortenURL = (0, catchAsync_1.default)((req, res, next) => __awaiter(voi
             shortUrl,
             urlAlias,
         });
+        // Cache Url info
+        yield redis_1.default.redis.set(`url:${url.urlAlias}`, JSON.stringify(url));
         return res.status(201).json({ status: "success", data: { url } });
     }
     else {
@@ -74,6 +77,8 @@ exports.redirectToOriginalURL = (0, catchAsync_1.default)((req, res, next) => __
         }
         // Save updates
         yield url.save();
+        // Update Cache
+        yield redis_1.default.redis.set(`url:${url.urlAlias}`, JSON.stringify(url));
         // Redirect to the original URL
         return res.redirect(url.longUrl);
     }
