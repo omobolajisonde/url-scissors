@@ -24,6 +24,7 @@ Built as a capstone project at [Altschool Africa School of Engineering - Node.js
  * **Node.js** and **Express** as the JavaScript runtime environment and server framework
  * **Typescript** as programming language of choice
  * **MongoDB** as our database of choice
+ * **Redis** as our in-memory data store for caching
  * **Mongoose** as an ODM library of choice
  * **Passport** for authentication. This API uses the JWT strategy
  * **jsonwebtoken** for signing and verifying JWTs
