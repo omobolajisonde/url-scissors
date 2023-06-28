@@ -5,8 +5,9 @@
   "main": "dist/server.js",
   "scripts": {
     "test": "jest dist --coverage",
-    "start:dev": "nodemon dist/server.js",
-    "start": "node dist/server.js"
+    "start:dev": "nodemon ./dist/server.js",
+    "start": "node ./dist/server.js",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
