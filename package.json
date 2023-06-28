@@ -10,7 +10,7 @@
     "test": "jest dist --coverage",
     "start:dev": "nodemon ./dist/server.js",
     "start": "node ./dist/server.js",
-    "build": "tsc"
+    "build": "npm install && tsc"
   },
   "repository": {
     "type": "git",
