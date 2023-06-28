@@ -1,8 +1,11 @@
 {
   "name": "url-scissors",
   "version": "1.0.0",
-  "description": "A URL shortner",
+  "description": "URL Scissors is a powerful URL shortening service that provides an intuitive interface to shorten and customize your URLs. With URL Scissors, you can easily generate shortened aliases for your long and complex URLs, making them more manageable and shareable",
   "main": "dist/server.js",
+  "engines": {
+    "node": ">=14.20.1"
+  },
   "scripts": {
     "test": "jest dist --coverage",
     "start:dev": "nodemon ./dist/server.js",
