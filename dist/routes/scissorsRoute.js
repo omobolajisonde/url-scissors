@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const scissorsController_1 = require("../controllers/scissorsController");
+const router = (0, express_1.Router)();
+router.get("/:urlAlias", scissorsController_1.redirectToOriginalURL);
+router.post("/shortenURL", scissorsController_1.shortenURL);
+// router.patch("/:id", updateTodo);
+// router.delete("/:id", deleteTodo);
+exports.default = router;

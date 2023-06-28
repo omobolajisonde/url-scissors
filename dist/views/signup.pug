@@ -1,0 +1,26 @@
+extends base
+block content
+    section.signup
+        form.form__sign(id="signup") 
+            h1 Sign Up for free
+            div
+                label(for="firstName") First name
+                input(type="text", id="firstName", name="firstName", required)
+            div
+                label(for="lastName") Last name
+                input(type="text", id="lastName", name="lastName", required)
+            div
+                label(for="email") Email
+                input(type="email", id="email", name="email", required)
+            div
+                label(for="password") Password
+                input(type="password", id="password", name="password", required, minLength="6")
+            div
+                label(for="confirmPassword") Confirm password
+                input(type="password", id="confirmPassword", name="confirmPassword", required, minLength="6")
+            div
+                button(type="submit", class="btn") Sign Up
+                span 
+                    | Already have an account? 
+                    a.link(href="/signin") Sign in
+

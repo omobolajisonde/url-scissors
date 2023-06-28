@@ -1,0 +1,20 @@
+extends base
+block content
+    section.history 
+        h1.h1 Shortned Links
+        if urls.length
+            ul.ul
+                each url in urls
+                    li.li
+                        p 
+                            span #{url.shortUrl}
+                            span #{url.longUrl}
+                        a.link(href=`/history/${url.urlAlias}`) View Stats &rarr;
+            
+            .pagination
+                if prevPage
+                    a.pagination-btn(href=`/history?page=${prevPage}`) Prev
+                if showNext
+                    a.pagination-btn(href=`/history?page=${prevPage+2}`) Next
+        else 
+            p No data
