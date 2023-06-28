@@ -7,6 +7,12 @@ import {
 } from "../controllers/historyController";
 const router = Router();
 
+router.get("/healthCheck", (req, res, next) => {
+  return res
+    .status(200)
+    .json({ status: "success", message: "Server up and running!" });
+});
+
 router.get(
   "/",
   (req, res, next) => {
