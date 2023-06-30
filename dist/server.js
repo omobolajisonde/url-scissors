@@ -19,7 +19,7 @@ const redis_1 = __importDefault(require("./config/redis"));
 const app_1 = __importDefault(require("./app"));
 const db_1 = __importDefault(require("./config/db"));
 const PORT = process.env.PORT || 8080;
-const HOST = process.env.HOST || "localhost";
+const HOST = process.env.HOST || "0.0.0.0";
 const httpServer = (0, http_1.createServer)(app_1.default);
 (function () {
     return __awaiter(this, void 0, void 0, function* () {

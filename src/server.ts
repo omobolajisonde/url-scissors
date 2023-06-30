@@ -7,7 +7,7 @@ import app from "./app";
 import connectToMongoDB from "./config/db";
 
 const PORT = process.env.PORT || 8080;
-const HOST = process.env.HOST || "localhost";
+const HOST = process.env.HOST || "0.0.0.0";
 
 const httpServer = createServer(app);
 
