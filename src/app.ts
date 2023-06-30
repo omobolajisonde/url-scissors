@@ -42,8 +42,8 @@ console.log(API_BASE_URL, "🎯🎯", process.env.API_BASE_URL);
 app.use("/", viewsRouter);
 app.get("/s/:urlAlias", redirectToOriginalURL);
 
-app.use(`${API_BASE_URL}/auth`, authRouter);
-app.use(`${API_BASE_URL}/url`, scrissorsRouter);
+app.use(`${API_BASE_URL}/auth/`, authRouter);
+app.use(`${API_BASE_URL}/url/`, scrissorsRouter);
 
 // Any request that makes it to this part has lost it's way
 app.all("*", (req: Request, res: Response, next: NextFunction) => {
