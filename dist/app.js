@@ -34,6 +34,7 @@ const appLimiter = (0, express_rate_limit_1.default)({
 });
 app.use("/", appLimiter); // Use to limit repeated requests to the server
 const API_BASE_URL = process.env.API_BASE_URL || "/api/v1";
+console.log(API_BASE_URL, "🎯🎯", process.env.API_BASE_URL);
 app.use("/", viewRoutes_1.default);
 app.get("/s/:urlAlias", scissorsController_1.redirectToOriginalURL);
 app.use(`${API_BASE_URL}/auth`, authRoutes_1.default);

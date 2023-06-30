@@ -9,7 +9,6 @@ const appError_1 = __importDefault(require("../utils/appError"));
 const historyController_1 = require("../controllers/historyController");
 const router = (0, express_1.Router)();
 router.get("/healthCheck", (req, res, next) => {
-    console.log("first");
     return res
         .status(200)
         .json({ status: "success", message: "Server up and running!" });
