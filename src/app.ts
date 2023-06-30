@@ -38,6 +38,7 @@ const appLimiter = rateLimit({
 app.use("/", appLimiter); // Use to limit repeated requests to the server
 
 const API_BASE_URL = process.env.API_BASE_URL || "/api/v1";
+console.log(API_BASE_URL, "🎯🎯", process.env.API_BASE_URL);
 app.use("/", viewsRouter);
 app.get("/s/:urlAlias", redirectToOriginalURL);
 

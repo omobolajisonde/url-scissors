@@ -124,6 +124,7 @@ npm install
    - Copy and paste the content of `example.env` into this new `.env` file.
    - Set the `EMAIL_USER` variable to your email address.
    - Set the `EMAIL_PASSWORD` variable to your email account [app password](https://support.google.com/mail/answer/185833?hl=en).
+   - Visit [Redis Cloud](http://redis.com/try-free/?_ga=2.163442559.292603700.1688108157-2071201179.1687682344&_gl=1*zb82gs*_ga*MjA3MTIwMTE3OS4xNjg3NjgyMzQ0*_ga_8BKGRQKRPV*MTY4ODEwODE1Ny40LjAuMTY4ODEwODE2My41NC4wLjA.) to create a Redis data store and get the values for these variables: `REDIS_HOST`, `REDIS_PORT`, `REDIS_USERNAME`, `REDIS_PASSWORD`
 
 2. **Run the development server:**
 ```bash
@@ -143,7 +144,7 @@ npm test
 # API REFERENCE
 
 ### Getting Started
-- Base URL: https://blog-cm7d.onrender.com/api/v1
+- Base URL: https://shtnr.cyclic.app/api/v1
 
 - Authentication: Protected routes, requires a valid JWT to be sent along with the request as a Cookie header.
 Valid tokens can be gotten on `signup`, `signin` and `resetPassword`.
@@ -315,8 +316,8 @@ Sends a `POST` request to shorten provided URL.
 - Request Body (JSON):
 ```json
 {
-    "longUrl": "https://www.youtube.com/";
-    "customAlias": "shortn";
+    "longUrl": "https://www.youtube.com/"
+    "customAlias": "shortn"
 }
 ```
 - Response (JSON)
@@ -366,7 +367,7 @@ Success
 ---
 
 ## Deployment
-https://blog-cm7d.onrender.com/api/v1
+https://shtnr.cyclic.app/api/v1
 
 ## Authors
 [Sonde Omobolaji](https://github.com/omobolajisonde) 
