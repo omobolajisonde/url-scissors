@@ -8,9 +8,7 @@ const express_1 = __importDefault(require("express"));
 const passport_1 = __importDefault(require("passport"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
-const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
-const scissorsRoutes_1 = __importDefault(require("./routes/scissorsRoutes"));
-const scissorsController_1 = require("./controllers/scissorsController");
+const routes_1 = __importDefault(require("./routes/routes"));
 const errorControllers_1 = __importDefault(require("./controllers/errorControllers"));
 const app = (0, express_1.default)();
 // Serving static files
@@ -32,14 +30,8 @@ const appLimiter = (0, express_rate_limit_1.default)({
     message: "Too many requests from your IP address, please try again later.",
 });
 app.use("/", appLimiter); // Use to limit repeated requests to the server
-const API_BASE_URL = process.env.API_BASE_URL || "/api/v1";
-app.use(`${API_BASE_URL}/auth/`, authRoutes_1.default);
-app.use(`${API_BASE_URL}/url/`, scissorsRoutes_1.default);
-app.get("/s/:urlAlias", scissorsController_1.redirectToOriginalURL);
-app.get("/test", (req, res) => {
-    return res.status(200).send("test");
-});
-// app.use("/", viewsRouter);
+// Routes
+app.use("/", routes_1.default);
 // Any request that makes it to this part has lost it's way
 app.all("*", (req, res, next) => {
     return res.status(404).render("error", {

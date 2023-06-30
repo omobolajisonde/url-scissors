@@ -4,10 +4,7 @@ import passport from "passport";
 import cookieParser from "cookie-parser";
 import rateLimit from "express-rate-limit";
 
-import authRouter from "./routes/authRoutes";
-import scrissorsRouter from "./routes/scissorsRoutes";
-import viewsRouter from "./routes/viewRoutes";
-import { redirectToOriginalURL } from "./controllers/scissorsController";
+import Router from "./routes/routes";
 import globalErrorHandler from "./controllers/errorControllers";
 
 const app = express();
@@ -37,14 +34,8 @@ const appLimiter = rateLimit({
 });
 app.use("/", appLimiter); // Use to limit repeated requests to the server
 
-const API_BASE_URL = process.env.API_BASE_URL || "/api/v1";
-app.use(`${API_BASE_URL}/auth/`, authRouter);
-app.use(`${API_BASE_URL}/url/`, scrissorsRouter);
-app.get("/s/:urlAlias", redirectToOriginalURL);
-app.get("/test", (req, res) => {
-  return res.status(200).send("test");
-});
-// app.use("/", viewsRouter);
+// Routes
+app.use("/", Router);
 
 // Any request that makes it to this part has lost it's way
 app.all("*", (req: Request, res: Response, next: NextFunction) => {

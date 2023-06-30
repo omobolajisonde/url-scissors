@@ -11,16 +11,16 @@ html(lang="en")
     link(href="/style.css", rel="stylesheet")
     link(href="/responsiveness.css", rel="stylesheet")
 
-    if script === "index"
-      script(type="module" src="/index.js" defer) 
     if script === "signup"
       script(type="module" src="/signupScript.js" defer) 
-    if script === "signin"
+    else if script === "signin"
       script(type="module" src="/signinScript.js" defer) 
-    if script === "forgotPassword"
+    else if script === "forgotPassword"
       script(type="module" src="/forgotPassword.js" defer)
-    if script === "resetPassword"
+    else if script === "resetPassword"
       script(type="module" src="/resetPassword.js" defer) 
+    else 
+      script(type="module" src="/index.js" defer) 
     title URL Scissors
   body
     //- Header
