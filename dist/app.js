@@ -10,7 +10,6 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
 const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
 const scissorsRoutes_1 = __importDefault(require("./routes/scissorsRoutes"));
-const viewRoutes_1 = __importDefault(require("./routes/viewRoutes"));
 const scissorsController_1 = require("./controllers/scissorsController");
 const errorControllers_1 = __importDefault(require("./controllers/errorControllers"));
 const app = (0, express_1.default)();
@@ -37,7 +36,7 @@ const API_BASE_URL = process.env.API_BASE_URL || "/api/v1";
 app.use(`${API_BASE_URL}/auth/`, authRoutes_1.default);
 app.use(`${API_BASE_URL}/url/`, scissorsRoutes_1.default);
 app.get("/s/:urlAlias", scissorsController_1.redirectToOriginalURL);
-app.use("/", viewRoutes_1.default);
+// app.use("/", viewsRouter);
 // Any request that makes it to this part has lost it's way
 app.all("*", (req, res, next) => {
     return res.status(404).render("error", {
