@@ -9,8 +9,7 @@
   "scripts": {
     "test": "jest dist --coverage",
     "start:dev": "nodemon ./dist/server.js",
-    "start": "node ./dist/server.js",
-    "build": "npm install && tsc"
+    "start": "node ./dist/server.js"
   },
   "repository": {
     "type": "git",
