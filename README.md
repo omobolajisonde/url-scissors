@@ -144,7 +144,7 @@ npm test
 # API REFERENCE
 
 ### Getting Started
-- Base URL: https://shtnr.cyclic.app/api/v1
+- Base URL: https://shtnr.onrender.com/
 
 - Authentication: Protected routes, requires a valid JWT to be sent along with the request as a Cookie header.
 Valid tokens can be gotten on `signup`, `signin` and `resetPassword`.
@@ -367,7 +367,7 @@ Success
 ---
 
 ## Deployment
-https://shtnr.cyclic.app/api/v1
+https://shtnr.onrender.com/
 
 ## Authors
 [Sonde Omobolaji](https://github.com/omobolajisonde) 
