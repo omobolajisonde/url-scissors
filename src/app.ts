@@ -41,7 +41,7 @@ const API_BASE_URL = process.env.API_BASE_URL || "/api/v1";
 app.use(`${API_BASE_URL}/auth/`, authRouter);
 app.use(`${API_BASE_URL}/url/`, scrissorsRouter);
 app.get("/s/:urlAlias", redirectToOriginalURL);
-app.get("/s/test", (req, res) => {
+app.get("/test", (req, res) => {
   return res.status(200).send("test");
 });
 // app.use("/", viewsRouter);

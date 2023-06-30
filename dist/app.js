@@ -36,7 +36,7 @@ const API_BASE_URL = process.env.API_BASE_URL || "/api/v1";
 app.use(`${API_BASE_URL}/auth/`, authRoutes_1.default);
 app.use(`${API_BASE_URL}/url/`, scissorsRoutes_1.default);
 app.get("/s/:urlAlias", scissorsController_1.redirectToOriginalURL);
-app.get("/s/test", (req, res) => {
+app.get("/test", (req, res) => {
     return res.status(200).send("test");
 });
 // app.use("/", viewsRouter);
