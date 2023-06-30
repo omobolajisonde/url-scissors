@@ -14,18 +14,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config(); // loads enviroment variables into process.env
+const http_1 = require("http");
 const redis_1 = __importDefault(require("./config/redis"));
 const app_1 = __importDefault(require("./app"));
 const db_1 = __importDefault(require("./config/db"));
 const PORT = process.env.PORT || 8080;
 const HOST = process.env.HOST || "localhost";
+const httpServer = (0, http_1.createServer)(app_1.default);
 (function () {
     return __awaiter(this, void 0, void 0, function* () {
         yield (0, db_1.default)(); // connects to a MongoDB server
         // Connect to Redis Cloud server
         yield redis_1.default.connect();
         // listens for connections
-        app_1.default.listen(+PORT, HOST, () => {
+        httpServer.listen(+PORT, HOST, () => {
             console.log(`Server started at port, ${PORT}...`);
         });
     });
