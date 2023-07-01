@@ -1,31 +1,18 @@
-import http from "http";
-import https from "https";
+import axios from "axios";
 import AppError from "./appError";
 
-function validateUrl(url: string) {
-  return new Promise((resolve, reject) => {
-    const protocol = url.startsWith("https") ? https : http;
+async function validateUrl(url: string) {
+  try {
+    const response = await axios.head(url);
 
-    // Sends a HEAD request to the url
-    const request = protocol.request(url, { method: "HEAD" }, (response) => {
-      // Check if the response status code is in the 200 range
-
-      if (
-        (response as { statusCode: number }).statusCode >= 200 &&
-        (response as { statusCode: number }).statusCode < 300
-      ) {
-        resolve(true); // URL is valid and links to a source
-      } else {
-        resolve(false); // URL is valid, but the source is not accessible
-      }
-    });
-
-    request.on("error", (error) => {
-      reject(new AppError("Your internet connection is very unstable.", 500)); // URL is invalid or an error occurred
-    });
-
-    request.end();
-  });
+    if (response.status >= 200 && response.status < 300) {
+      return true; // URL is valid and links to a source
+    } else {
+      return false; // URL is valid, but the source is not accessible
+    }
+  } catch (error) {
+    throw new AppError("Your internet connection is very unstable.", 500); // URL is invalid or an error occurred
+  }
 }
 
 export default validateUrl;
