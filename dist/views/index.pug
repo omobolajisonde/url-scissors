@@ -3,13 +3,13 @@ block content
   main
     div.scissors(id="scissors")
       form.form(id="shortnerForm") 
-        input(name="longUrl",type="text", placeholder="Enter the URL to shorten", required)
-        input(name="customAlias",type="text", placeholder="Customize the URL shortening (optional)", maxLength="6")
+        input(name="longUrl",type="text", placeholder="Enter the URL to shorten", required, autofocus="false")
+        input(name="customAlias",type="text", placeholder="Customize the URL shortening (optional)", maxLength="6", autofocus="false")
         button.btn(type="submit") Click to shorten URL
       div.copy-field(id="copy-field")
     div.qr
       form.form(id="qrForm") 
-        input(name="Url",type="text", placeholder="Enter the URL for QR code generation", required)
+        input(name="Url",type="text", placeholder="Enter the URL for QR code generation", required, autofocus="false")
         button.btn(type="submit") Click to generate QR code.
     div.qrcode(id="qrcode")
 

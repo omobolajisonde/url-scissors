@@ -5,10 +5,10 @@ block content
             h1 Welcome back, sign in
             div
                 label(for="email") Email
-                input(type="email", id="email", name="email", required)
+                input(type="email", id="email", name="email", required, autofocus="false")
             div
                 label(for="password") Password
-                input(type="password", id="password", name="password", required, minLength="6")
+                input(type="password", id="password", name="password", required, minLength="6", autofocus="false")
             div
                 button(type="submit", class="btn") Sign In
                 span 
