@@ -26,7 +26,19 @@ function validateUrl(url) {
             }
         }
         catch (error) {
-            throw new appError_1.default("Your internet connection is very unstable.", 500); // URL is invalid or an error occurred
+            if (error.response) {
+                // Error response received from the server
+                if (error.response.status === 401) {
+                    throw new appError_1.default("Authentication required to access the resource.", 500);
+                }
+                else {
+                    throw new appError_1.default(`Error: ${error.response.status} ${error.response.statusText}`, 500);
+                }
+            }
+            else {
+                // Other types of errors
+                throw new appError_1.default("Invalid URL or poor internet connection.", 500);
+            }
         }
     });
 }

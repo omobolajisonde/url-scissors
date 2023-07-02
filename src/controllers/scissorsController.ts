@@ -80,7 +80,7 @@ export const redirectToOriginalURL = catchAsync(async (req, res, next) => {
     // Redirect to the original URL
     return res.redirect(url.longUrl);
   } else {
-    throw new AppError("Not found!", 404);
+    throw new AppError("Not found!", 404, true);
   }
 });
 

@@ -83,7 +83,7 @@ exports.redirectToOriginalURL = (0, catchAsync_1.default)((req, res, next) => __
         return res.redirect(url.longUrl);
     }
     else {
-        throw new appError_1.default("Not found!", 404);
+        throw new appError_1.default("Not found!", 404, true);
     }
 }));
 exports.generateQRCode = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
